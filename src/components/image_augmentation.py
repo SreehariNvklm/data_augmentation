@@ -86,6 +86,26 @@ class ImageAugmentation:
 
             return processed_img
 
+if __name__=="__main__":
+    img = cv2.imread('messi 1.webp')
+    image_augmentation = ImageAugmentation([img])
+    final_image_set = image_augmentation.processed_images
+
+    bgr_img_set = final_image_set[0]
+#     rgb_img_set = final_image_set[1]
+#     gray_img_set = final_image_set[2]
+
+#     for i in bgr_img_set:
+#         plt.imshow(i)
+    #print(len(bgr_img_set))
+    plt.figure(figsize=(10,10))
+    for i in range(3):
+        ax = plt.subplot(2,4,i+1)
+        if i in [0,1]:
+            plt.imshow(bgr_img_set[i])
+        else:
+            plt.imshow(bgr_img_set[i]/255)
+
 # class ImageAugmentation:
 #     def __init__(self,images):
 #         self.images = images
