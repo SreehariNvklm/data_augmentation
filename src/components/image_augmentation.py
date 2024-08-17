@@ -87,20 +87,39 @@ class ImageAugmentation:
             return processed_img
 
 if __name__=="__main__":
-    img = cv2.imread('messi 1.webp')
+    img = cv2.imread('profile.jpg')
     image_augmentation = ImageAugmentation([img])
     final_image_set = image_augmentation.processed_images
 
     bgr_img_set = final_image_set[0]
     rgb_img_set = final_image_set[1]
 
-    plt.figure(figsize=(10,10))
-    for i in range(3):
-        ax = plt.subplot(2,4,i+1)
-        if i in [0,1]:
-            plt.imshow(bgr_img_set[i])
-        else:
-            plt.imshow(bgr_img_set[i]/255)
+    final_images = []
+
+    final_images.append(bgr_img_set[0])
+    final_images.append(bgr_img_set[1])
+    final_images.append(bgr_img_set[2]/255)
+    for i in range(10):
+        final_images.append(bgr_img_set[3][i]*255)
+        final_images.append(bgr_img_set[4][i])
+        final_images.append(bgr_img_set[5][i]*255)
+        final_images.append(bgr_img_set[6][i]*255)
+    final_images.append(bgr_img_set[7])
+
+    final_images.append(rgb_img_set[0])
+    final_images.append(rgb_img_set[1])
+    final_images.append(rgb_img_set[2]/255)
+    for i in range(10):
+        final_images.append(rgb_img_set[3][i]*255)
+        final_images.append(rgb_img_set[4][i])
+        final_images.append(rgb_img_set[5][i]*255)
+        final_images.append(rgb_img_set[6][i]*255)
+    final_images.append(rgb_img_set[7])
+
+    for i in range(len(final_images)):
+        string = "outputs/"+str(i+1)+".png"
+        cv2.imwrite(string,np.array(final_images[i])*255)
+    print("Augmented images obtained succesfully")
 
 # class ImageAugmentation:
 #     def __init__(self,images):
