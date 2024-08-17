@@ -71,17 +71,17 @@ class ImageAugmentation:
     def batching_images(self):
         for img in self.images:
             normal_img,normal_noise,normal_blur,normal_rotated,normal_rotated_blur,normal_rotated_noise_blur,normal_rotated_noise,normal_noise_blur = self.augment_img(img)
-#             rgb_image, gray_image = self.color_grading(img)
-#             rgb_img,rgb_noise,rgb_blur,rgb_rotated,rgb_rotated_blur,rgb__rotated_noise_blur,rgb_rotated_noise,rgb_noise_blur = self.augment_img(rgb_image)
+            rgb_image, gray_image = self.color_grading(img)
+            rgb_img,rgb_noise,rgb_blur,rgb_rotated,rgb_rotated_blur,rgb__rotated_noise_blur,rgb_rotated_noise,rgb_noise_blur = self.augment_img(rgb_image)
 #             gray_img,gray_noise,gray_blur,gray_rotated,gray_rotated_blur,gray__rotated_noise_blur,gray_rotated_noise,gray_noise_blur = self.augment_img(gray_image)
 
             processed_img = []
             bgr = [normal_img,normal_noise,normal_blur,normal_rotated,normal_rotated_blur,normal_rotated_noise_blur,normal_rotated_noise,normal_noise_blur]
-#             rgb = [rgb_img,rgb_noise,rgb_blur,rgb_rotated,rgb_rotated_blur,rgb__rotated_noise_blur,rgb_rotated_noise,rgb_noise_blur]
+            rgb = [rgb_img,rgb_noise,rgb_blur,rgb_rotated,rgb_rotated_blur,rgb__rotated_noise_blur,rgb_rotated_noise,rgb_noise_blur]
 #             gray = [gray_img,gray_noise,gray_blur,gray_rotated,gray_rotated_blur,gray__rotated_noise_blur,gray_rotated_noise,gray_noise_blur]
 
             processed_img.append(bgr)
-#             processed_img.append(rgb)
+            processed_img.append(rgb)
 #             processed_img.append(gray)
 
             return processed_img
@@ -92,12 +92,8 @@ if __name__=="__main__":
     final_image_set = image_augmentation.processed_images
 
     bgr_img_set = final_image_set[0]
-#     rgb_img_set = final_image_set[1]
-#     gray_img_set = final_image_set[2]
+    rgb_img_set = final_image_set[1]
 
-#     for i in bgr_img_set:
-#         plt.imshow(i)
-    #print(len(bgr_img_set))
     plt.figure(figsize=(10,10))
     for i in range(3):
         ax = plt.subplot(2,4,i+1)
